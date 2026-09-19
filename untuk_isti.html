@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Untuk Isti 🤍</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.12), transparent 28%),
+        radial-gradient(circle at 80% 80%, rgba(255,255,255,.10), transparent 30%),
+        linear-gradient(135deg, #171a2b, #2a2140 50%, #181827);
+      color: white;
+    }
+
+    .card {
+      width: min(88vw, 520px);
+      padding: 48px 28px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 28px;
+      background: rgba(255,255,255,.08);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 25px 80px rgba(0,0,0,.35);
+      animation: appear 1.2s ease;
+      z-index: 2;
+    }
+
+    .heart {
+      font-size: 58px;
+      display: inline-block;
+      animation: beat 1.25s infinite;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(30px, 8vw, 48px);
+      line-height: 1.15;
+      font-weight: 700;
+    }
+
+    p {
+      margin: 18px 0 26px;
+      color: rgba(255,255,255,.72);
+      font-size: 15px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 24px;
+      font-size: 15px;
+      color: #25202d;
+      background: #fff;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 8px 25px rgba(0,0,0,.2);
+    }
+
+    button:hover {
+      transform: translateY(-2px) scale(1.03);
+    }
+
+    #message {
+      display: none;
+      margin-top: 22px;
+      font-size: 16px;
+      line-height: 1.6;
+      color: rgba(255,255,255,.9);
+      animation: fade .7s ease;
+    }
+
+    .floating-heart {
+      position: absolute;
+      bottom: -40px;
+      font-size: 18px;
+      opacity: 0;
+      animation: floatUp linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      15% { transform: scale(1.18); }
+      30% { transform: scale(1); }
+      45% { transform: scale(1.1); }
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(25px) scale(.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(.7) rotate(0deg); opacity: 0; }
+      15% { opacity: .55; }
+      100% { transform: translateY(-110vh) scale(1.25) rotate(25deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="heart">🤍</div>
+    <h1>Aku sayang bgt sama kamu 🤍</h1>
+    <p>— buat Isti, dari seseorang yang sayang sama kamu.</p>
+
+    <button onclick="showMessage()">Ada sesuatu buat kamu</button>
+
+    <div id="message">
+      Makasih udah hadir di hidup aku.<br>
+      Semoga kita bisa terus bareng, saling ngerti,<br>
+      dan bikin banyak cerita indah bareng-bareng. 🤍
+    </div>
+  </div>
+
+  <script>
+    function showMessage() {
+      const msg = document.getElementById("message");
+      msg.style.display = "block";
+      document.querySelector("button").style.display = "none";
+
+      for (let i = 0; i < 18; i++) {
+        setTimeout(createHeart, i * 100);
+      }
+    }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "floating-heart";
+      heart.textContent = Math.random() > .5 ? "🤍" : "♡";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+      heart.style.fontSize = (14 + Math.random() * 18) + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 9000);
+    }
+
+    setInterval(() => {
+      if (Math.random() > .35) createHeart();
+    }, 900);
+  </script>
+
+</body>
+</html>
